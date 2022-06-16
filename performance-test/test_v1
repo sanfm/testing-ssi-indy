@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+AGENT="performance"
+DOCKER_NET="bridge"
+AGENT_MODULE="performance"
+AGENT_PORT=8050
+AGENT_PORT_RANGE=8050-8069
+
+
+DOCKER_ENV=-e LOG_LEVEL= -e RUNMODE=docker -e DOCKERHOST=192.168.122.143 -e AGENT_PORT=8050 -e TRACE_TARGET=log -e TRACE_TAG=acapy.events -e TRACE_ENABLED=
+
+
+# Ya está construida la imagen
+#echo "Preparing agent image..."
+#docker build -q -t faber-alice-demo -f ../docker/Dockerfile.demo .. || exit 1
+
+
+
+docker run --name $AGENT --rm -it --network=${DOCKER_NET} \
+  -p 0.0.0.0:$AGENT_PORT_RANGE:$AGENT_PORT_RANGE \
+  $DOCKER_ENV \
+  faber-alice-demo $AGENT_MODULE --port $AGENT_PORT
