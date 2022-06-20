@@ -5,18 +5,19 @@ import asyncio
 async def main():
 
     async with aiohttp.ClientSession() as session:
-        async with session.get('http://python.org') as response:
+        async with session.get(admin_api + "/connections/create-invitation") as response:
 
             print("Status:", response.status)
             print("Content-type:", response.headers['content-type'])
 
-            html = await response.text()
-            print("Body:", html[:15], "...")
+            resp = await response.text()
+            #print("Body:", html[:15], "...")
+            print(resp)
 
-            print(type(session))
-            print(type(response))
-            print(type(session.get))
 
+
+
+admin_api = 'http://0.0.0.0:11000'
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
