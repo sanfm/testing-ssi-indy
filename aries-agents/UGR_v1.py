@@ -1,13 +1,22 @@
-import requests
+import aiohttp
+import asyncio
 
 
-admin_api = 'http://0.0.0.0:11000'
+async def main():
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get('http://python.org') as response:
+
+            print("Status:", response.status)
+            print("Content-type:", response.headers['content-type'])
+
+            html = await response.text()
+            print("Body:", html[:15], "...")
+
+            print(type(session))
+            print(type(response))
+            print(type(session.get))
 
 
-#  Crear una invitación
-invitation  =  requests.post(f"{admin_api}/connections/create-invitation")
-
-print(invitation.json())
-
-
-
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
