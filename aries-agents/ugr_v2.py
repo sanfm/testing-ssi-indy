@@ -30,5 +30,7 @@ async def main():
 
 #admin_api = 'http://0.0.0.0:11000'
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+
+asyncio.run(main())
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(main())
