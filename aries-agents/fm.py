@@ -12,6 +12,7 @@ async def main():
     # en todas las peticiones posteriores: clientSession(Base_URL)
     async with aiohttp.ClientSession(admin_api) as session:
 
+        options = "    (1) Input New Invitation\n" "    (2) Send Message\n"
         async for option in utils.prompt_loop(options):
 
             if option is not None:

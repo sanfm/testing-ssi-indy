@@ -5,8 +5,7 @@ import binascii
 import json
 from urllib.parse import urlparse
 
-import utils
-
+from . import utils
 
 
 
