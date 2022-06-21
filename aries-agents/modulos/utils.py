@@ -245,4 +245,3 @@ def require_indy():
     except OSError:
         print("libindy shared library could not be loaded")
         sys.exit(1)
-*
