@@ -143,7 +143,7 @@ def prompt_init():
     use_asyncio_event_loop()
 
 
-async def prompt(*args, *kwargs):
+async def prompt(*args, **kwargs):
     prompt_init()
     with patch_stdout():
         try:
