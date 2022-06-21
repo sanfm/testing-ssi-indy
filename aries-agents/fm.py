@@ -23,7 +23,8 @@ async def main():
 
             elif option == "1":
                 utils.log_status("Introducir detalles de la invitacion")
-                conexion = peticiones.recibir_invitacion(session)
+                conexion = await peticiones.recibir_invitacion(session)
+                print(conexion)
 
 
 
