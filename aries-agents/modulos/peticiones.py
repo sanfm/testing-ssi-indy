@@ -31,7 +31,10 @@ async def crear_invitacion(
 
     if use_did_exchange:
         invi_params = {"auto_accept": json.dumps(auto_accept)}
-        payload = {"handshake_protocols": ["rfc23"]}
+        payload = {
+                "handshake_protocols": ["rfc23"], 
+                "use_public_did": False
+                }
         invitacion = await admin_request(session, 'POST', '/out-of-band/create-invitation', payload, params=invi_params)
 
     else:
