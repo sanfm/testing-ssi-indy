@@ -39,7 +39,7 @@ async def recibir_invitacion(
         session
         ):
 
-    async for details in prompt_loop("Detalles de la invitación: "):
+    async for details in utils.prompt_loop("Detalles de la invitación: "):
         b64_invite = None
         try:
             url = urlparse(details)
@@ -77,9 +77,8 @@ async def recibir_invitacion(
 
     params={}
     with utils.log_timer("Connect duration:"):
-        #connection = await agent_container.input_invitation(details, wait=True)
         
-        if '/out-of-band/' in invitacion_test:# si está la cadena /out-of-band/ en la invitación
+        if '/out-of-band/' in details.get("@type", ""):# si está la cadena /out-of-band/ en la invitación
             # Reusar conexiones existentes si hay conexiones anteriores entre ambos agentes
             params["use_existing_connection"] = "true"
             conexion = await admin_request(session, 'POST', '/out-of-band/receive-invitation', details, params=params)
@@ -88,6 +87,17 @@ async def recibir_invitacion(
 
 
     return conexion
+
+
+
+async def aceptar_invitacion(
+        session, 
+        con_id
+        ):
+
+    path = '/didexchange/' + con_id + '/accept-invitation'
+
+    algo = await admin_request(session, 'POST', path) 
 
     
 

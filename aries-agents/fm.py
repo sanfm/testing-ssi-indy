@@ -25,15 +25,18 @@ async def main():
                 utils.log_status("Introducir detalles de la invitacion")
                 conexion = await peticiones.recibir_invitacion(session)
                 print(conexion)
+                print('conexion es :{}'.format(type(conexion)))
 
+                con_id = conexion.get("connection_id")
 
+                # Responder a la inviatión
+                algo = peticiones.acetpar_invitacion(session, con_id)
+                print(algo)
 
     os._exit(1)
 
 
-        #invit = await peticiones.crear_invitacion(session)
 
-        #print(invit)
 
 
 
