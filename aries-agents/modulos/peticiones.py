@@ -25,10 +25,17 @@ async def admin_request(
 
 async def crear_invitacion(
         session,
-        use_did_exchange: bool = False
+        use_did_exchange: bool = True,
+        auto_accept: bool = True
         ):
 
-    invitacion = await admin_request(session, 'POST', '/connections/create-invitation')
+    if use_did_exchange:
+        invi_params = {"auto_accept": json.dumps(auto_accept)}
+        payload = {"handshake_protocols": ["rfc23"]}
+        invitacion = await admin_request(session, 'POST', '/out-of-band/create-invitation', payload, params=invi_params)
+
+    else:
+        invitacion = await admin_request(session, 'POST', '/connections/create-invitation')
 
     return invitacion
 

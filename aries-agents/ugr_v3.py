@@ -12,8 +12,19 @@ async def main():
     async with aiohttp.ClientSession(admin_api) as session:
 
         invit = await peticiones.crear_invitacion(session)
-
         print(invit)
+
+
+        options = "1) Generar nueva invitación"
+        async for option in options:
+
+            if option == "1":
+                invit = await peticiones.crear_invitacion(session)
+                print(invit)
+
+
+            
+
 
 
 
