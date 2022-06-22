@@ -30,7 +30,7 @@ async def main():
                 con_id = conexion.get("connection_id")
 
                 # Responder a la inviatión
-                algo = peticiones.acetpar_invitacion(session, con_id)
+                algo = peticiones.aceptar_invitacion(session, con_id)
                 print(algo)
 
     os._exit(1)
