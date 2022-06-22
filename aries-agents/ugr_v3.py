@@ -16,13 +16,20 @@ async def main():
 
 
         options = "1) Generar nueva invitación"
-        async for option in options:
+        async for option in utils.prompt_loop(options):
+
+            if option is not None:
+                option = option.strip()
+
+            if option is None or option in "xX":
+                break
 
             if option == "1":
                 invit = await peticiones.crear_invitacion(session)
                 print(invit)
 
 
+    os._exit(1)
             
 
 
