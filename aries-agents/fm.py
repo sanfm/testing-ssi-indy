@@ -46,6 +46,6 @@ async def main():
 
 
 
-admin_api = 'http://0.0.0.0:11001'
+admin_api = 'http://0.0.0.0:12000'
 
 asyncio.run(main())
