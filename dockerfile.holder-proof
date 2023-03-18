@@ -1,0 +1,9 @@
+FROM python:latest
+
+WORKDIR /controller
+
+COPY agent /controller
+
+RUN pip install --no-cache-dir -r /controller/modulos/requirements.txt
+
+CMD [ "python", "/controller/perf_2_fm.py"]
